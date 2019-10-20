@@ -15,26 +15,33 @@
 			<artifactId>jersey-server</artifactId>
 			<version>1.9</version>
 		</dependency>
-
+		
+		<dependency>
+		    <groupId>com.sun.jersey</groupId>
+		    <artifactId>jersey-client</artifactId>
+		    <version>1.9</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-json</artifactId>
 			<version>1.9</version>
 		</dependency>
-
+ <!-- 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.8</version>
 		</dependency>
-  
+   -->
+   <!--  keep it for not Jersey implementation -->
+    <!--
 		<dependency>
 		      <groupId>io.rest-assured</groupId>
 		      <artifactId>rest-assured</artifactId>
 		      <version>4.1.2</version>
-		  <!--    <scope>test</scope>  -->
-		</dependency>
-		
+		  </dependency>
+		 -->
 		<dependency>
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>

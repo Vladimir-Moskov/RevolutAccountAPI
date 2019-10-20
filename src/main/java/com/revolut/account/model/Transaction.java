@@ -5,8 +5,17 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlRootElement;
+
 @XmlRootElement (name="transaction")
 public class Transaction {
+	
+	public static final String AMOUNT_SHOULD_BE_GREATER_THEN_0 = "Transfered Amount should be greater then 0.";
+	public static final String ACCOUNT_FROM_TO_DOES_NOT_EXIST = "Account From/ Account To does not Exist";
+	public static final String ACCOUNT_FROM_TO_ARE_SAME = "Account From/ Account are the same";
+	public static final String ACCOUNT_FROM_TO_IS_CLOSED = "Transaction has not been completed because Account From/ Account is closed";
+	public static final String ACCOUNT_FROM_DOES_NOT_HAVE_ENOUGHT_BALANCE = "Account From  does not have anought balance Exist";
+	public static final String TRANSACTION_HAS_BEEN_COMPLETED_SUCCESSFULLY = "Transaction has been completed successfully";
+	
 	private UUID id;
 	private long fromAccount;
 	private long toAccount;

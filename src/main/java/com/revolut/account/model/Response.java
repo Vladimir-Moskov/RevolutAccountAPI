@@ -5,10 +5,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="responce")
 public class Response {
 
+	public static final String ACCOUNT_DELETED_SUCCESSFULLY = "Account deleted successfully";
+	public static final String ACCOUNT_DOES_NOT_EXIST = "Account Doesn't Exists";
+		
 	private boolean status;
 	private String message;
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 

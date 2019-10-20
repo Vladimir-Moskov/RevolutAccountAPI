@@ -13,34 +13,34 @@ import com.sun.jersey.api.core.PackagesResourceConfig;
 import com.sun.jersey.api.core.ResourceConfig;
 import com.sun.net.httpserver.HttpServer;
 
-//http://localhost:8080/RevolutAccountAPI/account/5617214d-04a8-46cc-a90c-d975d3015387/getDummy
-//https://crunchify.com/how-to-start-embedded-http-jersey-server-during-java-application-startup/
-//@SuppressWarnings("restriction")
+// Embedded server from This tutorial: http://crunchify.me/1VIwInK
+ 
+//TODO: move API url, port values  to a configuration file
+//TODO: Add logs
+
 public class RevolutAccountAPI {
 
 	public static void main(String[] args) throws IOException {
-		System.out.println("Starting Crunchify's Embedded Jersey HTTPServer...\n");
-		HttpServer crunchifyHTTPServer = createHttpServer();
-		crunchifyHTTPServer.start();
+		System.out.println("Starting RevolutAccountAPI Embedded Jersey HTTPServer...\n");
+		HttpServer revolutAccountHTTPServer = createHttpServer();
+		revolutAccountHTTPServer.start();
 		System.out.println(
 				String.format("\nJersey Application Server started with WADL available at " + "%sapplication.wadl\n",
-						getCrunchifyURI()));
-		System.out.println("Started Crunchify's Embedded Jersey HTTPServer Successfully !!!");
+						getAccountAPIURI()));
+		System.out.println("Started RevolutAccountAPI Embedded Jersey HTTPServer Successfully !!!");
 	}
 
 	private static HttpServer createHttpServer() throws IOException {
-		ResourceConfig crunchifyResourceConfig = new PackagesResourceConfig("main.java.com.revolut.account");
-		// This tutorial required and then enable below line:
-		// http://crunchify.me/1VIwInK
-		// crunchifyResourceConfig.getContainerResponseFilters().add(CrunchifyCORSFilter.class);
-		return HttpServerFactory.create(getCrunchifyURI(), crunchifyResourceConfig);
+		ResourceConfig revolutAccountConfig = new PackagesResourceConfig("main.java.com.revolut.account");
+
+		return HttpServerFactory.create(getAccountAPIURI(), revolutAccountConfig);
 	}
 
-	private static URI getCrunchifyURI() {
-		return UriBuilder.fromUri("http://" + crunchifyGetHostName() + "/RevolutAccountAPI").port(8080).build();
+	private static URI getAccountAPIURI() {
+		return UriBuilder.fromUri("http://" + accountAPIGetHostName() + "/RevolutAccountAPI").port(8080).build();
 	}
 
-	private static String crunchifyGetHostName() {
+	private static String accountAPIGetHostName() {
 		String hostName = "localhost";
 		try {
 			hostName = InetAddress.getLocalHost().getCanonicalHostName();

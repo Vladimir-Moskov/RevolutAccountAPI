@@ -6,17 +6,26 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import main.java.com.revolut.LocalDateTimeAdapter;
-
-@XmlRootElement (name="account")
+@XmlRootElement(name = "account")
 public class Account {
 	private BigDecimal balance;
 	private long id;
 	private String owner;
 	private boolean isClosed = false;
-	
+
+//@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+	private transient LocalDateTime creationDate;
+
+	// @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+	private transient LocalDateTime updateDate;
+
+	public Account() {
+		creationDate = LocalDateTime.now(Clock.systemUTC());
+		updateDate = LocalDateTime.now(Clock.systemUTC());
+		balance = new BigDecimal(0);
+	}
+
 	public boolean isClosed() {
 		return isClosed;
 	}
@@ -26,17 +35,6 @@ public class Account {
 		this.isClosed = isClosed;
 	}
 
-	//@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
-	private transient  LocalDateTime  creationDate;
-	
-	//@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
-	private transient LocalDateTime updateDate;
-	
-	public Account() {
-		creationDate = LocalDateTime.now(Clock.systemUTC());
-		updateDate = LocalDateTime.now(Clock.systemUTC());
-	}
-	
 	public String getOwner() {
 		return owner;
 	}
@@ -64,27 +62,26 @@ public class Account {
 	public BigDecimal getBalance() {
 		return balance;
 	}
-	
+
 	public void setBalance(BigDecimal balance) {
 		updateDate = LocalDateTime.now(Clock.systemUTC());
 		this.balance = balance;
 	}
-	
+
 	public long getId() {
 		return id;
 	}
-	
+
 	public void setId(long id) {
 		this.id = id;
 	}
 
 	@Override
 	public String toString() {
-		return "Account [balance=" + balance + ", id=" + id + ", owner=" + owner /*+ ", creationDate=" + creationDate
-				+ ", updateDate=" + updateDate */+ "]";
+		return "Account [balance=" + balance + ", id=" + id + ", owner="
+				+ owner /*
+						 * + ", creationDate=" + creationDate + ", updateDate=" + updateDate
+						 */ + "]";
 	}
-	
-	
 
-	
 }
