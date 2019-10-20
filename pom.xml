@@ -48,9 +48,13 @@
 		    <version>4.8.1</version>
 		    <!--   <scope>test</scope>  -->
 		</dependency>
-	
 	</dependencies>
-
+	
+	<!-- execute tests manually for now -->
+ 	<properties>
+        <maven.test.skip>true</maven.test.skip>
+    </properties>
+    
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>

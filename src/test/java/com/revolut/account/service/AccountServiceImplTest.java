@@ -37,8 +37,8 @@ public class AccountServiceImplTest {
 	
 	@Test
 	public void getAccountEchoTest(){
-		Account account = service.getAccountEcho(1);
-		assertEquals(account.getId(), 1);
+		Account account = service.getAccountEcho(testID1);
+		assertEquals(account.getId(), testID1);
 	}
 	
 	@Test
@@ -82,7 +82,7 @@ public class AccountServiceImplTest {
 	@Test
 	public void deleteAccountTest(){
 		Response response = service.deleteAccount(testID1);
-		assertTrue(response.getMessage() == Response.ACCOUNT_DOES_NOT_EXIST);
+		assertTrue(response.getMessage().equals(Response.ACCOUNT_DOES_NOT_EXIST));
 		assertTrue(!response.getStatus());
 		
 		Account accountAdd = addAccount(testID1, testOwner1, balance1);
@@ -110,7 +110,7 @@ public class AccountServiceImplTest {
 	public void doTransactionTest(){
 
 		Account accountFrom = addAccount(testID1, testOwner1, balance1);
-		Account accountTo = addAccount(testID2, testOwner2, balance1);
+		Account accountTo = addAccount(testID2, testOwner2, new BigDecimal(0));
 		
 		Transaction transaction = new Transaction();
 		transaction.setFromAccount(accountFrom.getId());

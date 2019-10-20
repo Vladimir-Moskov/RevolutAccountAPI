@@ -13,11 +13,12 @@ import com.sun.jersey.api.core.PackagesResourceConfig;
 import com.sun.jersey.api.core.ResourceConfig;
 import com.sun.net.httpserver.HttpServer;
 
-// Embedded server from This tutorial: http://crunchify.me/1VIwInK
+// Embedded server from This tutorial: https://crunchify.com/how-to-start-embedded-http-jersey-server-during-java-application-startup/
  
 //TODO: move API url, port values  to a configuration file
 //TODO: Add logs
 
+// Actual server to run AccountAPI Implementation
 public class RevolutAccountAPI {
 
 	public static void main(String[] args) throws IOException {
@@ -25,7 +26,7 @@ public class RevolutAccountAPI {
 		HttpServer revolutAccountHTTPServer = createHttpServer();
 		revolutAccountHTTPServer.start();
 		System.out.println(
-				String.format("\nJersey Application Server started with WADL available at " + "%sapplication.wadl\n",
+				String.format("\n RevolutAccountAPI Application Server started with WADL available at " + "%s/application.wadl\n",
 						getAccountAPIURI()));
 		System.out.println("Started RevolutAccountAPI Embedded Jersey HTTPServer Successfully !!!");
 	}
@@ -35,7 +36,7 @@ public class RevolutAccountAPI {
 
 		return HttpServerFactory.create(getAccountAPIURI(), revolutAccountConfig);
 	}
-
+	
 	private static URI getAccountAPIURI() {
 		return UriBuilder.fromUri("http://" + accountAPIGetHostName() + "/RevolutAccountAPI").port(8080).build();
 	}

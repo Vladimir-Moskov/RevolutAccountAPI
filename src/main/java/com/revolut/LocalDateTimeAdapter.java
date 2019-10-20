@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
+// Adapter in order to make LocalDateTime fields serializable/deserializable
 public class LocalDateTimeAdapter extends XmlAdapter<String, LocalDateTime> {
 	  @Override
 	    public LocalDateTime unmarshal(String dateString) throws Exception {
