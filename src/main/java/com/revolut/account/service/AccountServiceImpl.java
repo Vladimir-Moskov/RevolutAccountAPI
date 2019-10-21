@@ -189,6 +189,7 @@ public class AccountServiceImpl implements AccountService {
 		return accounts.get(id);
 	}
 
+	//TODO: implement paging and limited result
 	@Override
 	@GET
 	@Path("/getAll")

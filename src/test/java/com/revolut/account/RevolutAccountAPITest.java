@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -128,8 +129,8 @@ public class RevolutAccountAPITest {
 	@Test
 	public void getAllAccountReturns200WithEmptyListTest() {
 		ClientResponse response = createRequest("getAll", "GET", "", null);
-		GenericType<ArrayList<Account>> gType = new GenericType<ArrayList<Account>>() {	};
-		ArrayList<Account> outputAccount = response.getEntity(gType);
+		GenericType<List<Account>> gType = new GenericType<List<Account>>() {	};
+		List<Account> outputAccount = response.getEntity(gType);
 
 		
 		System.out.println("<<<< Generating JSON Output >>>");
@@ -141,8 +142,8 @@ public class RevolutAccountAPITest {
 	public void getAllAccountReturns200WithListTest() {
 		Account accountAdd = addAccount(testID1, testOwner1, balance1);
 		ClientResponse response = createRequest("getAll", "GET", "", null);
-		GenericType<ArrayList<Account>> gType = new GenericType<ArrayList<Account>>() {	};
-		ArrayList<Account> outputAccount = response.getEntity(gType);
+		GenericType<List<Account>> gType = new GenericType<List<Account>>() {	};
+		List<Account> outputAccount = response.getEntity(gType);
 
 		System.out.println("<<<< Generating JSON Output >>>");
 		System.out.println(outputAccount);
@@ -201,8 +202,8 @@ public class RevolutAccountAPITest {
 		accountTo = createRequest("{id}/get", "GET",  Long.toString(accountTo.getId()), null).getEntity(Account.class);;
 
 		Transaction transaction = new Transaction();
-		transaction.setFromAccount(testID1);
-		transaction.setToAccount(testID2);
+		transaction.setFromAccount(accountFrom.getId());
+		transaction.setToAccount(accountTo.getId());
 		transaction.setAmount(balance1);
 		ClientResponse response = createRequest("doTransaction", "POST", "", transaction);
 		Response tranResponse = response.getEntity(Response.class);
